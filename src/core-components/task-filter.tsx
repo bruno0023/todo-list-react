@@ -4,7 +4,7 @@ import Button from "../components/button";
 export default function TaskFilter() {
 
     return <>
-        <div className="flex justify-between gap-4 p-2 border border-solid border-gray-300">
+        <div className="flex justify-between gap-4 p-2">
             <Button variant="secondary" className="w-full gap-2">
                 <p>Todas</p>
                 <Badge value={3} />
