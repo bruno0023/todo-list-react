@@ -34,7 +34,7 @@ export default function Search({
 
     return (
         <form onSubmit={handleSaveTask} className={searchVariants({ className })}>
-            <InputText onChange={handleChangeTaskTitle} className="flex-1" value={taskTitle}/>
+            <InputText required onChange={handleChangeTaskTitle} className="flex-1" value={taskTitle}/>
             <Button type="submit">Adicionar</Button>
         </form>
     );

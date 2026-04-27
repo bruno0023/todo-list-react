@@ -5,6 +5,6 @@ export type TaskState = 'creating' | 'created';
 export interface Task {
     id: string,
     title: string,
-    concluded: TaskState,
-    state?: boolean
+    concluded: boolean,
+    state: TaskState
 }
