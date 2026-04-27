@@ -1,13 +1,18 @@
 import Taskitem from "./task-item";
 
-export default function TaskList() {
-    return <>
+//Hooks
+import useTasks from '../hooks/useTask'
 
+
+export default function TaskList() {
+
+    const { tasks } = useTasks()
+
+    return <>
         <div>
-            <Taskitem>Levar o cachorro pra passear</Taskitem>
-            <Taskitem>Comprar Trigo 25kg</Taskitem>
-            <Taskitem>10 receitas de caseiro</Taskitem>
-            <Taskitem>10 receitas de batatar</Taskitem>
+            {tasks.map(task => (
+                <Taskitem key={task.id} task={task} />
+            ))}
         </div>
 
     </>;

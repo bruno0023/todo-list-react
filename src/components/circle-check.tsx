@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import Check from "../assets/icons/check.svg?react";
 
@@ -22,27 +21,23 @@ const circleCheckboxVariants = cva(
 );
 
 interface CircleCheckboxProps
-  extends VariantProps<typeof circleCheckboxVariants> {
-  checked?: boolean;
-  onChange?: (value: boolean) => void;
+  extends React.ComponentProps<'button'>,
+    VariantProps<typeof circleCheckboxVariants> {
+  checked: boolean;
 }
 
 export default function CircleCheckbox({
-  checked = false,
+  checked,
+  ...props
 }: CircleCheckboxProps) {
-  const [isChecked, setIsChecked] = useState(checked);
 
-  const handleToggle = () => {
-    const newValue = !isChecked;
-    setIsChecked(newValue);
-  };
 
   return (
     <button
-      onClick={handleToggle}
-      className={circleCheckboxVariants({ checked: isChecked })}
+      {...props}
+      className={circleCheckboxVariants({ checked: checked })}
     >
-      {isChecked && (
+      {checked && (
         <Check className="w-4 h-4 text-white" strokeWidth={3} />
       )}
     </button>

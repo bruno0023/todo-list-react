@@ -10,14 +10,40 @@ export default function useTask() {
         const newTask: Task = {
             id: crypto.randomUUID(),
             title: TaskTitle,
-            concluded: 'created'
+            concluded: false,
+            state: 'creating'
         }
 
-        setTasks([...tasks, newTask] )
+        setTasks([...tasks, newTask])
+    }
+
+    function updateTask(id: string, taskNewTitle: string) {
+        if (!taskNewTitle.trim()) return;
+        const taskUpdated = tasks.map((task) => task.id === id ? { ...task, title: taskNewTitle } : task)
+        setTasks(taskUpdated)
+    }
+
+    function updateStateTask(id: string) {
+        const taskConcluedUpdated = tasks.map((task) => task.id === id ? { ...task, concluded: !task.concluded } : task)
+        setTasks(taskConcluedUpdated)
+    }
+
+    function deleteConcluedTask() {
+        const newTaskFilter = tasks.filter(task => !task.concluded)
+        setTasks(newTaskFilter)
+    }
+
+    function deleteTask(id: string) {
+        const newTaskFilter = tasks.filter(task => task.id !== id)
+        setTasks(newTaskFilter)
     }
 
     return {
         tasks,
-        preparedTask
+        preparedTask,
+        updateStateTask,
+        deleteConcluedTask,
+        updateTask,
+        deleteTask
     }
 }
